@@ -1,0 +1,44 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "KeyAdministration",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "insert-here-the-arn-of-key-administrator"
+            },
+            "Action": [
+                "kms:Update*",
+                "kms:UntagResource",
+                "kms:TagResource",
+                "kms:ScheduleKeyDeletion",
+                "kms:Revoke*",
+                "kms:Put*",
+                "kms:List*",
+                "kms:Get*",
+                "kms:Enable*",
+                "kms:Disable*",
+                "kms:Describe*",
+                "kms:Delete*",
+                "kms:Create*",
+                "kms:CancelKeyDeletion"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "KeyUsage",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "${cluster_role_arn}"
+            },
+            "Action": [
+                "kms:Decrypt",
+                "kms:DescribeKey",
+                "kms:Encrypt",
+                "kms:GenerateDataKey*",
+                "kms:ReEncrypt*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
