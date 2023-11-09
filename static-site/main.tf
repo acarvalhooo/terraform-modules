@@ -9,7 +9,7 @@ resource "aws_s3_bucket" "bucket" {
   }
 }
 
-# Enabling versioning to the bucket
+# Enabling versioning in bucket
 resource "aws_s3_bucket_versioning" "versioning" {
   bucket = aws_s3_bucket.bucket.id
   versioning_configuration {
