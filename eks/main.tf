@@ -27,7 +27,7 @@ resource "aws_iam_policy_attachment" "attachments" {
 
 # Creating kms key and alias to be used by secrets encryption
 data "template_file" "kms-policy" {
-  template = file("${path.module}/kms-policy.json")
+  template = file("${path.module}/policy.json")
 
   vars = {
     cluster_role_arn = aws_iam_role.cluster-role.arn
