@@ -34,6 +34,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     origin_access_control_id = aws_cloudfront_origin_access_control.oac.id
   }
 
+  aliases             = var.custom-domain
   comment             = local.comment
   enabled             = true
   default_root_object = "index.html"
@@ -58,6 +59,9 @@ resource "aws_cloudfront_distribution" "distribution" {
 
   viewer_certificate {
     cloudfront_default_certificate = true
+    acm_certificate_arn            = var.certificate-arn
+    ssl_support_method             = "sni-only"
+    minimum_protocol_version       = "TLSv1.2_2021"
   }
 
   tags = {

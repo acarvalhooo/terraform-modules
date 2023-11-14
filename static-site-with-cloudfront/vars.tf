@@ -11,3 +11,17 @@ variable "environment" {
   default     = "development"
   type        = string
 }
+
+# Custom domain
+variable "custom-domain" {
+  description = "Custom domain that must be used by CloudFront"
+  default     = ""
+  type        = string
+}
+
+# Certificate ARN
+variable "certificate-arn" {
+  description = "Certificate ARN that must be used by CloudFront to use a custom domain"
+  default     = ""
+  type        = string
+}
