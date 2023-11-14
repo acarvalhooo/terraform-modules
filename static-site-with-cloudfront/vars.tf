@@ -16,7 +16,7 @@ variable "environment" {
 variable "custom-domain" {
   description = "Custom domain that must be used by CloudFront"
   default     = ""
-  type        = string
+  type        = string(list)
 }
 
 # Certificate ARN
