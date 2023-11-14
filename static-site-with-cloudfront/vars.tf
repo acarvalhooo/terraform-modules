@@ -15,7 +15,7 @@ variable "environment" {
 # Custom domain
 variable "custom-domain" {
   description = "Custom domain that must be used by CloudFront"
-  default     = ""
+  default     = [""]
   type        = string(list)
 }
 
