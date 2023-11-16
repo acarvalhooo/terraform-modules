@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "trust-alb-controller" {
 
 # Creating policy to be used by load balancer controller
 data "template_file" "alb-policy-file" {
-  template = file("${path.module}/alb-policy.json")
+  template = file("${path.module}/policy.json")
 }
 
 resource "aws_iam_policy" "alb-policy" {
@@ -56,7 +56,7 @@ data "aws_eks_cluster_auth" "cluster-auth" {
 provider "helm" {
   kubernetes {
     host                   = var.endpoint
-    cluster_ca_certificate = file("${path.module}/cert.pem")
+    cluster_ca_certificate = base64decode(var.cluster-ca-certificate)
     token                  = data.aws_eks_cluster_auth.cluster-auth.token
   }
 }
