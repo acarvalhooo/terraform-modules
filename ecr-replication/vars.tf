@@ -1,7 +1,7 @@
 # Regions
-variable "replicate_region" {
-  description = "Regions that the ECR repositorys will be replicated"
-  default     = ["sa-east-1"]
+variable "replication-regions" {
+  description = "Regions that the ECR repositorys must be replicated"
+  default     = [""]
   type        = list(string)
 }
 
