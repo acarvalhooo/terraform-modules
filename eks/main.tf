@@ -1,6 +1,6 @@
 # Creating role to be used by eks cluster and attaching policys
 resource "aws_iam_role" "cluster-role" {
-  name = "AmazonEKSClusterRole"
+  name = "AmazonEKSClusterRole-${var.environment}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -91,7 +91,7 @@ resource "aws_iam_openid_connect_provider" "oidc-provider" {
 
 # Creating role to be used by managed node group and attaching policys
 resource "aws_iam_role" "node-group-role" {
-  name = "AmazonEKSNodeGroupRole"
+  name = "AmazonEKSNodeGroupRole-${var.environment}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -124,15 +124,15 @@ resource "aws_eks_node_group" "spot-node-group" {
   node_role_arn   = aws_iam_role.node-group-role.arn
 
   scaling_config {
-    min_size     = 0
-    desired_size = 1
-    max_size     = 2
+    min_size     = var.min-size
+    desired_size = var.desired-size
+    max_size     = var.max-size
   }
 
-  ami_type       = "AL2_x86_64"
+  ami_type       = var.ami-type
   capacity_type  = "SPOT"
-  disk_size      = "50"
-  instance_types = ["t3.medium"]
+  disk_size      = var.disk-size
+  instance_types = var.instances-types
   subnet_ids     = [var.application-subnet-01-id, var.application-subnet-02-id]
 
   tags = {
@@ -148,15 +148,15 @@ resource "aws_eks_node_group" "on-demand-node-group" {
   node_role_arn   = aws_iam_role.node-group-role.arn
 
   scaling_config {
-    min_size     = 0
-    desired_size = 1
-    max_size     = 2
+    min_size     = var.min-size
+    desired_size = var.desired-size
+    max_size     = var.max-size
   }
 
-  ami_type       = "AL2_x86_64"
+  ami_type       = var.ami-type
   capacity_type  = "ON_DEMAND"
-  disk_size      = "50"
-  instance_types = ["t3.medium"]
+  disk_size      = var.disk-size
+  instance_types = var.instances-types
   subnet_ids     = [var.application-subnet-01-id, var.application-subnet-02-id]
 
   tags = {
@@ -165,49 +165,19 @@ resource "aws_eks_node_group" "on-demand-node-group" {
   }
 }
 
-# Creating role to be used by VPC CNI and attaching policys
-data "aws_eks_cluster" "eks_cluster" {
-  name = aws_eks_cluster.cluster.name
-}
-
-resource "aws_iam_role" "vpc-cni-role" {
-  name = "AmazonEKSVPCCNIRole"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [{
-      Effect = "Allow",
-      Action = ["sts:AssumeRoleWithWebIdentity"],
-      Principal = {
-        Federated = aws_iam_openid_connect_provider.oidc-provider.arn
-      },
-      Condition = {
-        StringLike = {
-          "${data.aws_eks_cluster.eks_cluster.identity.0.oidc.0.issuer}:sub" = "system:serviceaccount:kube-system:aws-node",
-          "${data.aws_eks_cluster.eks_cluster.identity.0.oidc.0.issuer}:aud" = "sts.amazonaws.com"
-        }
-      }
-    }]
-  })
-}
-
-resource "aws_iam_policy_attachment" "vpc-cni-attachment" {
-  name       = "AmazonEKS_CNI_Policy"
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-  roles      = [aws_iam_role.vpc-cni-role.name]
-}
-
 # Installing add-ons
 resource "aws_eks_addon" "add-ons" {
   for_each = {
     "coredns"    = { addon_name = "coredns", addon_version = var.coredns-version }
     "kube-proxy" = { addon_name = "kube-proxy", addon_version = var.kube-proxy-version }
-    "vpc-cni"    = { addon_name = "vpc-cni", addon_version = var.vpc-cni-version, service_account_role_arn = aws_iam_role.vpc-cni-role.arn }
+    "vpc-cni"    = { addon_name = "vpc-cni", addon_version = var.vpc-cni-version }
   }
 
   resolve_conflicts_on_create = "OVERWRITE"
-  resolve_conflicts_on_update = "PRESERVE"
+  resolve_conflicts_on_update = "OVERWRITE"
   cluster_name                = aws_eks_cluster.cluster.name
   addon_name                  = each.value.addon_name
   addon_version               = each.value.addon_version
+
+  depends_on = [ aws_eks_node_group.spot-node-group, aws_eks_node_group.on-demand-node-group ]
 }
