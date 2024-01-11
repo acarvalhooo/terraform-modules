@@ -32,3 +32,29 @@ variable "oidc-issuer-arn" {
   default     = ""
   type        = string
 }
+
+# Environment
+variable "environment" {
+  description = "Environment where the resources are being launched"
+  default     = ""
+  type        = string
+}
+
+#######################################################################################################
+## The default values below are the latest version available when this code was created. If you want ##
+## to make sure it's still the latest, access: https://github.com/kubernetes-sigs/aws-efs-csi-driver ##
+#######################################################################################################
+
+# Chart version
+variable "chart-version" {
+  description = "Chart version"
+  default     = "2.5.3"
+  type        = string
+}
+
+# Application version
+variable "application-version" {
+  description = "Application version"
+  default     = "v1.7.3"
+  type        = string
+}

@@ -1,6 +1,6 @@
 # Creating role to be used by EFS CSI Driver and attaching policys
 resource "aws_iam_role" "efs-csi-role" {
-  name = "AmazonEFSCSIDriverRole"
+  name = "AmazonEFSCSIDriverRole-${var.environment}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -46,7 +46,7 @@ resource "helm_release" "efs-csi-driver" {
   repository = "https://kubernetes-sigs.github.io/aws-efs-csi-driver/"
   chart      = "aws-efs-csi-driver"
   namespace  = "kube-system"
-  version    = "2.5.1"
+  version    = var.chart-version
 
   set {
     name  = "clusterName"
@@ -55,7 +55,7 @@ resource "helm_release" "efs-csi-driver" {
 
   set {
     name  = "image.tag"
-    value = "v1.7.1"
+    value = var.application-version
   }
 
   set {
