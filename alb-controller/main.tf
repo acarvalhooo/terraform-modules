@@ -32,13 +32,13 @@ data "template_file" "alb-policy-file" {
 }
 
 resource "aws_iam_policy" "alb-policy" {
-  name   = "AmazonEKSLoadBalancerControllerPolicy"
+  name   = "AmazonEKSLoadBalancerControllerPolicy-${var.environment}"
   policy = data.template_file.alb-policy-file.rendered
 }
 
 # Creating role to be used by load balancer controller
 resource "aws_iam_role" "alb-controller-role" {
-  name               = "AmazonEKSLoadBalancerControllerRole"
+  name               = "AmazonEKSLoadBalancerControllerRole-${var.environment}"
   assume_role_policy = data.aws_iam_policy_document.trust-alb-controller.json
 }
 
@@ -68,7 +68,7 @@ resource "helm_release" "aws-load-balancer-controller" {
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
   namespace  = "kube-system"
-  version    = "1.6.2"
+  version    = var.chart-version
 
   set {
     name  = "clusterName"
@@ -77,7 +77,7 @@ resource "helm_release" "aws-load-balancer-controller" {
 
   set {
     name  = "image.tag"
-    value = "v2.6.2"
+    value = var.application-version
   }
 
   set {
