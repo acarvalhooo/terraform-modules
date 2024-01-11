@@ -179,5 +179,5 @@ resource "aws_eks_addon" "add-ons" {
   addon_name                  = each.value.addon_name
   addon_version               = each.value.addon_version
 
-  depends_on = [ aws_eks_node_group.spot-node-group, aws_eks_node_group.on-demand-node-group ]
+  depends_on = [aws_eks_node_group.spot-node-group, aws_eks_node_group.on-demand-node-group]
 }

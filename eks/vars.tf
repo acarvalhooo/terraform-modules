@@ -80,13 +80,13 @@ variable "ami-type" {
 # Disk size
 variable "disk-size" {
   description = "Disk size of nodes"
-  default = "50"
-  type = string
+  default     = "50"
+  type        = string
 }
 
 # Instances types
 variable "instances-types" {
   description = "Instances type of nodes"
-  default = ["t3.medium"]
-  type = list(string)
+  default     = ["t3.medium"]
+  type        = list(string)
 }
