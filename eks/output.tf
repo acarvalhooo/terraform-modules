@@ -1,4 +1,4 @@
-# Cluster url oidc
+# Cluster URL OIDC
 output "cluster-oidc-url" {
   value = aws_eks_cluster.cluster.identity.0.oidc.0.issuer
 }
@@ -13,12 +13,12 @@ output "api-server-endpoint" {
   value = aws_eks_cluster.cluster.endpoint
 }
 
-# Cluster certificate
+# Cluster CA certificate
 output "cluster-ca-certificate" {
   value = aws_eks_cluster.cluster.certificate_authority.0.data
 }
 
-# OIDC issuer arn
+# OIDC issuer ARN
 output "oidc-issuer-arn" {
   value = aws_iam_openid_connect_provider.oidc-provider.arn
 }

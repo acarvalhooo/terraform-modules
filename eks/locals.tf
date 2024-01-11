@@ -5,10 +5,10 @@ locals {
 
 # Cluster name
 locals {
-  cluster-name = "eks-cluster-${var.environment}"
+  cluster-name = "eks-cluster-${var.project}-${var.environment}"
 }
 
 # Node group name
 locals {
-  node-group-name = "node-group-${var.environment}"
+  node-group-name = "node-group-${var.project}-${var.environment}"
 }

@@ -1,4 +1,4 @@
-# Mapping availability zone of nat gateways
+# Mapping resources
 locals {
   nat_gateway_availability_zones = {
     "ngw-01" = var.az-1
@@ -6,7 +6,6 @@ locals {
   }
 }
 
-# Mapping nat gateways of elastic ips
 locals {
   elastic_ips_association = {
     "eip-01" = "ngw-01"

@@ -1,6 +1,9 @@
-# Creating role to be used by eks cluster and attaching policys
+# Getting ARN of user to configure as key administrator
+data "aws_caller_identity" "user" {}
+
+# Creating role to be used by EKS cluster and attaching policys
 resource "aws_iam_role" "cluster-role" {
-  name = "AmazonEKSClusterRole-${var.environment}"
+  name = "AmazonEKSClusterRole-${var.project}-${var.environment}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -25,7 +28,7 @@ resource "aws_iam_policy_attachment" "attachments" {
   policy_arn = each.value.policy_arn
 }
 
-# Creating kms key and alias to be used by secrets encryption
+# Creating KMS key and alias to be used by secrets encryption
 data "template_file" "kms-policy" {
   template = file("${path.module}/policy.json")
 
@@ -43,6 +46,7 @@ resource "aws_kms_key" "kms-key" {
   tags = {
     Name        = local.key-name
     Environment = var.environment
+    Project     = var.project
   }
 }
 
@@ -51,7 +55,7 @@ resource "aws_kms_alias" "kms-alias" {
   target_key_id = aws_kms_key.kms-key.key_id
 }
 
-# Creating eks cluster
+# Creating EKS cluster
 resource "aws_eks_cluster" "cluster" {
   name     = local.cluster-name
   role_arn = aws_iam_role.cluster-role.arn
@@ -75,10 +79,11 @@ resource "aws_eks_cluster" "cluster" {
   tags = {
     Name        = local.cluster-name
     Environment = var.environment
+    Project     = var.project
   }
 }
 
-# Creating oidc provider
+# Creating OIDC provider
 data "tls_certificate" "oidc-certificate" {
   url = aws_eks_cluster.cluster.identity.0.oidc.0.issuer
 }
@@ -91,7 +96,7 @@ resource "aws_iam_openid_connect_provider" "oidc-provider" {
 
 # Creating role to be used by managed node group and attaching policys
 resource "aws_iam_role" "node-group-role" {
-  name = "AmazonEKSNodeGroupRole-${var.environment}"
+  name = "AmazonEKSNodeGroupRole-${var.project}-${var.environment}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -138,6 +143,7 @@ resource "aws_eks_node_group" "spot-node-group" {
   tags = {
     Name        = "spot-${local.node-group-name}"
     Environment = var.environment
+    Project     = var.project
   }
 }
 
@@ -162,6 +168,7 @@ resource "aws_eks_node_group" "on-demand-node-group" {
   tags = {
     Name        = "on-demand-${local.node-group-name}"
     Environment = var.environment
+    Project     = var.project
   }
 }
 
