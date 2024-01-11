@@ -35,19 +35,19 @@ variable "eks-version" {
 # Addons versions
 variable "coredns-version" {
   description = "Version of CoreDNS addon"
-  default     = "v1.10.1-eksbuild.5"
+  default     = "v1.10.1-eksbuild.6"
   type        = string
 }
 
 variable "kube-proxy-version" {
   description = "Version of kube-proxy addon"
-  default     = "v1.28.2-eksbuild.2"
+  default     = "v1.28.4-eksbuild.4"
   type        = string
 }
 
 variable "vpc-cni-version" {
   description = "Version of VPC-CNI addon"
-  default     = "v1.15.3-eksbuild.1"
+  default     = "v1.16.0-eksbuild.1"
   type        = string
 }
 

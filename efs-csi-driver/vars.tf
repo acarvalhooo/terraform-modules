@@ -1,4 +1,4 @@
-# Cluster url oidc
+# Cluster URL OIDC
 variable "cluster-oidc-url" {
   description = "URL of cluster OIDC"
   default     = ""
@@ -26,7 +26,7 @@ variable "cluster-ca-certificate" {
   type        = string
 }
 
-# OIDC issuer arn
+# OIDC issuer ARN
 variable "oidc-issuer-arn" {
   description = "OIDC issuer arn"
   default     = ""

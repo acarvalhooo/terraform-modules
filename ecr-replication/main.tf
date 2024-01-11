@@ -1,4 +1,4 @@
-# Obtaining account id
+# Obtaining account ID
 data "aws_caller_identity" "account-id" {}
 
 # Replicating repositorys
