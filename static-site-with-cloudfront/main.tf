@@ -21,7 +21,7 @@ resource "aws_s3_bucket_versioning" "versioning" {
 # Creating origin control access
 resource "aws_cloudfront_origin_access_control" "oac" {
   name                              = "S3-OAC"
-  description                       = "Origin Access Control that must be used by buckets"
+  description                       = "Origin access control that must be used by buckets"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
