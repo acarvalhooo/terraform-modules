@@ -1,4 +1,5 @@
 # Using the module via orchestrator (Example)
+```
 terraform {
   required_providers {
     aws = {
@@ -26,3 +27,4 @@ module "vpc" {
   environment    = "prod"
   project        = "sap"
 }
+```
