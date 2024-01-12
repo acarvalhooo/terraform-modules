@@ -1,10 +1,10 @@
 # Creating S3 bucket for static site
 resource "aws_s3_bucket" "bucket" {
-  bucket        = var.bucket
+  bucket        = var.bucket-name
   force_destroy = false
 
   tags = {
-    Name        = var.bucket
+    Name        = var.bucket-name
     Environment = var.environment
   }
 }
@@ -13,7 +13,7 @@ resource "aws_s3_bucket" "bucket" {
 resource "aws_s3_bucket_versioning" "versioning" {
   bucket = aws_s3_bucket.bucket.id
   versioning_configuration {
-    status = "Enabled"
+    status = var.versioning
   }
 }
 
@@ -21,10 +21,10 @@ resource "aws_s3_bucket_versioning" "versioning" {
 resource "aws_s3_bucket_public_access_block" "rules" {
   bucket = aws_s3_bucket.bucket.id
 
-  block_public_acls       = var.disabling-rules
-  block_public_policy     = var.disabling-rules
-  ignore_public_acls      = var.disabling-rules
-  restrict_public_buckets = var.disabling-rules
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
 }
 
 # Defining ownership
