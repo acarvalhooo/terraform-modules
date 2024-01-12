@@ -1,6 +1,6 @@
 # Creating role to be used by EFS CSI Driver and attaching policys
 resource "aws_iam_role" "efs-csi-role" {
-  name = "AmazonEFSCSIDriverRole-${var.environment}"
+  name = "AmazonEFSCSIDriverRole-${var.project}-${var.environment}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -33,7 +33,7 @@ data "aws_eks_cluster_auth" "cluster-auth" {
 # Configuring helm provider
 provider "helm" {
   kubernetes {
-    host                   = var.api-server-endpoint
+    host                   = var.endpoint
     cluster_ca_certificate = base64decode(var.cluster-ca-certificate)
     token                  = data.aws_eks_cluster_auth.cluster-auth.token
   }
