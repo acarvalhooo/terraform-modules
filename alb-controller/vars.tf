@@ -26,6 +26,20 @@ variable "cluster-ca-certificate" {
   type        = string
 }
 
+# Chart version
+variable "chart-version" {
+  description = "Chart version"
+  default     = ""
+  type        = string
+}
+
+# Application version
+variable "application-version" {
+  description = "Application version"
+  default     = ""
+  type        = string
+}
+
 # Environment
 variable "environment" {
   description = "Environment where the resources are being launched"
@@ -33,21 +47,9 @@ variable "environment" {
   type        = string
 }
 
-###############################################################################################################
-## The default values below are the latest version available when this code was created. If you want to make ##
-## sure it's still the latest, access: https://artifacthub.io/packages/helm/aws/aws-load-balancer-controller ##
-###############################################################################################################
-
-# Chart version
-variable "chart-version" {
-  description = "Chart version"
-  default     = "1.6.2"
-  type        = string
-}
-
-# Application version
-variable "application-version" {
-  description = "Application version"
-  default     = "v2.6.2"
+# Project
+variable "project" {
+  description = "Project name"
+  default     = ""
   type        = string
 }

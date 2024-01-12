@@ -32,13 +32,13 @@ data "template_file" "alb-policy-file" {
 }
 
 resource "aws_iam_policy" "alb-policy" {
-  name   = "AmazonEKSLoadBalancerControllerPolicy-${var.environment}"
+  name   = "AmazonEKSLoadBalancerControllerPolicy-${var.project}-${var.environment}"
   policy = data.template_file.alb-policy-file.rendered
 }
 
 # Creating role to be used by load balancer controller
 resource "aws_iam_role" "alb-controller-role" {
-  name               = "AmazonEKSLoadBalancerControllerRole-${var.environment}"
+  name               = "AmazonEKSLoadBalancerControllerRole-${var.project}-${var.environment}"
   assume_role_policy = data.aws_iam_policy_document.trust-alb-controller.json
 }
 
