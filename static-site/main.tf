@@ -35,7 +35,7 @@ resource "aws_s3_bucket_ownership_controls" "ownership" {
   }
 }
 
-# Defining acls
+# Defining ACLs
 resource "aws_s3_bucket_acl" "acl" {
   depends_on = [
     aws_s3_bucket_public_access_block.rules,
