@@ -1,10 +1,10 @@
 # Creating S3 bucket for static site
 resource "aws_s3_bucket" "bucket" {
-  bucket        = var.bucket
+  bucket        = var.bucket-name
   force_destroy = false
 
   tags = {
-    Name        = var.bucket
+    Name        = var.bucket-name
     Environment = var.environment
   }
 }
@@ -13,7 +13,7 @@ resource "aws_s3_bucket" "bucket" {
 resource "aws_s3_bucket_versioning" "versioning" {
   bucket = aws_s3_bucket.bucket.id
   versioning_configuration {
-    status = "Enabled"
+    status = var.versioning
   }
 }
 
@@ -37,7 +37,7 @@ resource "aws_cloudfront_distribution" "distribution" {
   aliases             = var.custom-domain
   comment             = local.comment
   enabled             = true
-  default_root_object = "index.html"
+  default_root_object = var.root-object
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -67,6 +67,7 @@ resource "aws_cloudfront_distribution" "distribution" {
   tags = {
     Name        = local.comment
     Environment = var.environment
+    Project     = var.project
   }
 }
 
