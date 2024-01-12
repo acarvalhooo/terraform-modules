@@ -1,5 +1,5 @@
 # Using the module via orchestrator (Example)
-terraform {
+'terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -29,7 +29,7 @@ module "eks" {
   instances-types          = ["t3.medium", "t2.medium"]
   environment              = "prod"
   project                  = "sap"
-}
+}'
 
 # Observation
 Change the line 8 in policy.json file and insert the ARN of key administrator
