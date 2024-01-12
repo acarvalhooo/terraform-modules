@@ -12,6 +12,20 @@ variable "versioning" {
   type        = string
 }
 
+# Index object
+variable "index-object" {
+  description = "Name of index object"
+  default     = ""
+  type        = string
+}
+
+# Error object
+variable "error-object" {
+  description = "Name of error object"
+  default     = ""
+  type        = string
+}
+
 # Environment
 variable "environment" {
   description = "Environment where the resources are being created"

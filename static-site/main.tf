@@ -62,9 +62,9 @@ resource "aws_s3_bucket_policy" "policy" {
 resource "aws_s3_bucket_website_configuration" "website" {
   bucket = aws_s3_bucket.bucket.id
   index_document {
-    suffix = "index.html"
+    suffix = var.index-object
   }
   error_document {
-    key = "error.html"
+    key = var.error-object
   }
 }

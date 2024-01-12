@@ -17,6 +17,8 @@ module "static-site" {
   source         = "./static-site"
   bucket-name    = "my-favorite-bucket"
   versioning     = "Enabled"
+  index-object   = "index.html"
+  error-object   = "error.html"
   environment    = "prod"
   project        = "sap"
 }
