@@ -25,4 +25,4 @@ module "smb-csi-driver" {
 }
 ```
 # Observation
-Access https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts for verify the chart version available
+Access https://github.com/kubernetes-csi/csi-driver-smb/tree/master/charts for verify the chart version available
