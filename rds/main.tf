@@ -38,3 +38,45 @@ resource "aws_db_subnet_group" "subnet-group" {
     Project     = var.project
   }
 }
+
+# Creating aurora cluster
+resource "aws_rds_cluster" "cluster" {
+  db_subnet_group_name        = aws_db_subnet_group.subnet-group.name
+  cluster_identifier          = local.cluster-name
+  availability_zones          = var.availability-zones
+  allocated_storage           = 100
+  iops                        = 1000
+  db_cluster_instance_class   = "db.r5.medium"
+  storage_type                = ""
+  engine                      = var.engine
+  engine_version              = var.engine-version
+  master_username             = var.root-user
+  manage_master_user_password = true
+  deletion_protection         = var.delete-protection
+  port                        = var.db-port
+  vpc_security_group_ids      = [aws_security_group.db-sg.id]
+  storage_encrypted           = true
+  skip_final_snapshot         = true
+
+  tags = {
+    Name        = local.cluster-name
+    Environment = var.environment
+    Project     = var.project
+  }
+}
+
+# # Creating aurora instance
+# resource "aws_rds_cluster_instance" "writer_instance" {
+#   engine             = aws_rds_cluster.cluster.engine
+#   engine_version     = aws_rds_cluster.cluster.engine_version
+#   identifier         = local.identifier
+#   cluster_identifier = aws_rds_cluster.cluster.id
+#   instance_class     = "db.t3.medium"
+#   apply_immediately  = true
+#   ca_cert_identifier = "rds-ca-ecc384-g1"
+
+#   tags = {
+#     Name        = local.identifier
+#     Environment = var.environment
+#   }
+# }
