@@ -17,7 +17,7 @@ module "eks" {
   source                   = "./eks"
   vpc-id                   = "vpc-0000000000000"
   application-subnet-01-id = "subnet-0000000000000"
-  application-subnet-02-id = "subnet-0000000000000"
+  application-subnet-02-id = "subnet-0000000000001"
   eks-version              = "1.28"
   coredns-version          = "v1.10.1-eksbuild.6"
   kube-proxy-version       = "v1.28.4-eksbuild.4"
