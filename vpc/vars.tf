@@ -6,37 +6,37 @@ variable "vpc-cidr" {
 }
 
 # Subnets CIDRs
-variable "sn-pub-01-cidr" {
+variable "public-subnet-01-cidr" {
   description = "CIDR used in first public subnet"
   default     = ""
   type        = string
 }
 
-variable "sn-pub-02-cidr" {
+variable "public-subnet-02-cidr" {
   description = "CIDR used in second public subnet"
   default     = ""
   type        = string
 }
 
-variable "sn-app-01-cidr" {
+variable "application-subnet-01-cidr" {
   description = "CIDR used in first application subnet"
   default     = ""
   type        = string
 }
 
-variable "sn-app-02-cidr" {
+variable "application-subnet-02-cidr" {
   description = "CIDR used in second application subnet"
   default     = ""
   type        = string
 }
 
-variable "sn-db-01-cidr" {
+variable "database-subnet-01-cidr" {
   description = "CIDR used in first database subnet"
   default     = ""
   type        = string
 }
 
-variable "sn-db-02-cidr" {
+variable "database-subnet-02-cidr" {
   description = "CIDR used in second database subnet"
   default     = ""
   type        = string

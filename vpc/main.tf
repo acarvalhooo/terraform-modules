@@ -14,12 +14,12 @@ resource "aws_vpc" "vpc" {
 # Creating public and private subnets
 resource "aws_subnet" "subnets" {
   for_each = {
-    "public-subnet-01"      = { cidr_block = var.sn-pub-01-cidr, availability_zone = var.az-1, map_public_ip_on_launch = var.map-public-ip }
-    "public-subnet-02"      = { cidr_block = var.sn-pub-02-cidr, availability_zone = var.az-2, map_public_ip_on_launch = var.map-public-ip }
-    "application-subnet-01" = { cidr_block = var.sn-app-01-cidr, availability_zone = var.az-1 }
-    "application-subnet-02" = { cidr_block = var.sn-app-02-cidr, availability_zone = var.az-2 }
-    "database-subnet-01"    = { cidr_block = var.sn-db-01-cidr, availability_zone = var.az-1 }
-    "database-subnet-02"    = { cidr_block = var.sn-db-02-cidr, availability_zone = var.az-2 }
+    "public-subnet-01"      = { cidr_block = var.public-subnet-01-cidr, availability_zone = var.az-1, map_public_ip_on_launch = var.map-public-ip }
+    "public-subnet-02"      = { cidr_block = var.public-subnet-02-cidr, availability_zone = var.az-2, map_public_ip_on_launch = var.map-public-ip }
+    "application-subnet-01" = { cidr_block = var.application-subnet-01-cidr, availability_zone = var.az-1 }
+    "application-subnet-02" = { cidr_block = var.application-subnet-02-cidr, availability_zone = var.az-2 }
+    "database-subnet-01"    = { cidr_block = var.database-subnet-01-cidr, availability_zone = var.az-1 }
+    "database-subnet-02"    = { cidr_block = var.database-subnet-02-cidr, availability_zone = var.az-2 }
   }
 
   vpc_id            = aws_vpc.vpc.id
