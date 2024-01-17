@@ -74,11 +74,53 @@ variable "root-user" {
   type        = string
 }
 
+# Instance type
+variable "instance-type" {
+  description = "Instance type"
+  default     = ""
+  type        = string
+}
+
+# Allocated storage
+variable "storage" {
+  description = "Disk size"
+  default     = ""
+  type        = string
+}
+
+# Max allocated storage
+variable "max-storage" {
+  description = "Disk size"
+  default     = ""
+  type        = string
+}
+
 # Delete protection
 variable "delete-protection" {
   description = "Protect against deletions"
+  default     = true
+  type        = bool
+}
+
+# Skip final snapshot
+variable "skip-final-snapshot" {
+  description = "Skip final snapshot before delete"
+  default     = true
+  type        = bool
+}
+
+# Certificate
+variable "certificate" {
+  description = "SSL certificate used by instance"
   default     = ""
   type        = string
+}
+
+# Multi-az
+variable "multi-az" {
+  description = "Multi az instance"
+  default     = false
+  type        = bool
 }
 
 # Environment

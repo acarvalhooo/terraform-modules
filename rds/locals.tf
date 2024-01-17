@@ -8,7 +8,7 @@ locals {
   subnet-group-name = "subnet-group-${var.project}-${var.environment}"
 }
 
-# Cluster name
+# Instance name
 locals {
-  cluster-name = "database-${var.project}-${var.environment}"
+  instance-name = "database-${var.project}-${var.environment}"
 }
