@@ -41,7 +41,7 @@ variable "inbound-cidrs" {
 
 # Security groups IDs
 variable "sg-ids" {
-  description = "Security group ids allowed comunicate with the database"
+  description = "Security group IDs allowed comunicate with the database"
   default     = []
   type        = list(string)
 }
