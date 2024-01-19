@@ -1,3 +1,17 @@
+# Project
+variable "project" {
+  description = "Project name"
+  default     = ""
+  type        = string
+}
+
+# Environment
+variable "environment" {
+  description = "Environment where the resources are being launched"
+  default     = ""
+  type        = string
+}
+
 # Cluster URL OIDC
 variable "cluster-oidc-url" {
   description = "URL of cluster OIDC"
@@ -43,20 +57,6 @@ variable "chart-version" {
 # Application version
 variable "application-version" {
   description = "Application version"
-  default     = ""
-  type        = string
-}
-
-# Environment
-variable "environment" {
-  description = "Environment where the resources are being launched"
-  default     = ""
-  type        = string
-}
-
-# Project
-variable "project" {
-  description = "Project name"
   default     = ""
   type        = string
 }
