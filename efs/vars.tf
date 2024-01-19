@@ -35,14 +35,14 @@ variable "sg-ids" {
 
 # Encryption
 variable "encryption" {
-  description = "Encryption in EBS disk of EFS"
+  description = "Encryption of EFS disk"
   default     = true
   type        = bool
 }
 
 # KMS key ID
 variable "kms-key-id" {
-  description = "KMS key ID used to encrypt the EBS disk of EFS"
+  description = "KMS key ID used to encrypt the EFS disk"
   default     = ""
   type        = string
 }
