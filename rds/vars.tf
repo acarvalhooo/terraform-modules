@@ -25,18 +25,18 @@ variable "db-port" {
   type        = string
 }
 
-# Inbound CIDRs
-variable "inbound-cidrs" {
-  description = "CIDRs allowed to communicate with database"
-  default     = []
-  type        = list(string)
-}
-
 # Protocol
 variable "protocol" {
   description = "Inbound protocol allowed"
   default     = ""
   type        = string
+}
+
+# Inbound CIDRs
+variable "inbound-cidrs" {
+  description = "CIDRs allowed to communicate with database"
+  default     = []
+  type        = list(string)
 }
 
 # Security groups IDs
