@@ -1,6 +1,13 @@
-# VPC ID
-variable "vpc-id" {
-  description = "VPC where the cluster must be created"
+# Project
+variable "project" {
+  description = "Project name"
+  default     = ""
+  type        = string
+}
+
+# Environment
+variable "environment" {
+  description = "Environment where the resources are being created"
   default     = ""
   type        = string
 }
@@ -21,25 +28,6 @@ variable "application-subnet-02-id" {
 # EKS version
 variable "eks-version" {
   description = "EKS version"
-  default     = ""
-  type        = string
-}
-
-# Add-ons versions
-variable "coredns-version" {
-  description = "Version of CoreDNS add-on"
-  default     = ""
-  type        = string
-}
-
-variable "kube-proxy-version" {
-  description = "Version of Kube-Proxy add-on"
-  default     = ""
-  type        = string
-}
-
-variable "vpc-cni-version" {
-  description = "Version of VPC-CNI add-on"
   default     = ""
   type        = string
 }
@@ -77,23 +65,28 @@ variable "disk-size" {
   type        = string
 }
 
-# Instances types
-variable "instances-types" {
-  description = "Instances type of nodes"
+# Instance types
+variable "instance-types" {
+  description = "Instance types used in node groups"
   default     = []
   type        = list(string)
 }
 
-# Environment
-variable "environment" {
-  description = "Environment where the resources are being created"
+# Add-ons versions
+variable "coredns-version" {
+  description = "Version of CoreDNS add-on"
   default     = ""
   type        = string
 }
 
-# Project
-variable "project" {
-  description = "Project name"
+variable "kube-proxy-version" {
+  description = "Version of Kube-Proxy add-on"
+  default     = ""
+  type        = string
+}
+
+variable "vpc-cni-version" {
+  description = "Version of VPC-CNI add-on"
   default     = ""
   type        = string
 }

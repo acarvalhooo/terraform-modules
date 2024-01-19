@@ -137,7 +137,7 @@ resource "aws_eks_node_group" "spot-node-group" {
   ami_type       = var.ami-type
   capacity_type  = "SPOT"
   disk_size      = var.disk-size
-  instance_types = var.instances-types
+  instance_types = var.instance-types
   subnet_ids     = [var.application-subnet-01-id, var.application-subnet-02-id]
 
   tags = {
@@ -162,7 +162,7 @@ resource "aws_eks_node_group" "on-demand-node-group" {
   ami_type       = var.ami-type
   capacity_type  = "ON_DEMAND"
   disk_size      = var.disk-size
-  instance_types = var.instances-types
+  instance_types = var.instance-types
   subnet_ids     = [var.application-subnet-01-id, var.application-subnet-02-id]
 
   tags = {

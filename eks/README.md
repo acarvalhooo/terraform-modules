@@ -15,21 +15,20 @@ provider "aws" {
 
 module "eks" {
   source                   = "./eks"
-  vpc-id                   = "vpc-0000000000000"
-  application-subnet-01-id = "subnet-0000000000000"
-  application-subnet-02-id = "subnet-0000000000001"
+  project                  = "sap"
+  environment              = "prod"
+  application-subnet-01-id = "subnet-00000000000000000"
+  application-subnet-02-id = "subnet-00000000000000001"
   eks-version              = "1.28"
-  coredns-version          = "v1.10.1-eksbuild.6"
-  kube-proxy-version       = "v1.28.4-eksbuild.4"
-  vpc-cni-version          = "v1.16.0-eksbuild.1"
   min-size                 = "0"
   desired-size             = "1"
   max-size                 = "2"
   ami-type                 = "AL2_x86_64"
   disk-size                = "50"
   instances-types          = ["t3.medium", "t2.medium"]
-  environment              = "prod"
-  project                  = "sap"
+  coredns-version          = "v1.10.1-eksbuild.6"
+  kube-proxy-version       = "v1.28.4-eksbuild.4"
+  vpc-cni-version          = "v1.16.0-eksbuild.1"
 }
 ```
 # Observation
