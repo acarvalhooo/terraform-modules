@@ -1,19 +1,20 @@
+# Project
+variable "project" {
+  description = "Project name"
+  default     = ""
+  type        = string
+}
+
+# Environment
+variable "environment" {
+  description = "Environment where the resources are being created"
+  default     = ""
+  type        = string
+}
+
 # VPC ID
 variable "vpc-id" {
-  description = "VPC where the cluster must be created"
-  default     = ""
-  type        = string
-}
-
-# Subnet IDs
-variable "database-subnet-01-id" {
-  description = "First availability zone where the subnet group must be created"
-  default     = ""
-  type        = string
-}
-
-variable "database-subnet-02-id" {
-  description = "Second availability zone where the subnet group must be created"
+  description = "VPC where the security group of RDS must be created"
   default     = ""
   type        = string
 }
@@ -46,11 +47,17 @@ variable "sg-ids" {
   type        = list(string)
 }
 
-# Availability zones
-variable "availability-zones" {
-  description = "Availability zones where the instances can be created"
-  default     = []
-  type        = list(string)
+# Subnet IDs
+variable "database-subnet-01-id" {
+  description = "First availability zone where the subnet group must be created"
+  default     = ""
+  type        = string
+}
+
+variable "database-subnet-02-id" {
+  description = "Second availability zone where the subnet group must be created"
+  default     = ""
+  type        = string
 }
 
 # Engine
@@ -67,9 +74,16 @@ variable "engine-version" {
   type        = string
 }
 
-# Root user
-variable "root-user" {
-  description = "Name of root user"
+# Storage
+variable "storage" {
+  description = "Disk size"
+  default     = ""
+  type        = string
+}
+
+# Max storage
+variable "max-storage" {
+  description = "Max disk size"
   default     = ""
   type        = string
 }
@@ -81,37 +95,9 @@ variable "instance-type" {
   type        = string
 }
 
-# Allocated storage
-variable "storage" {
-  description = "Disk size"
-  default     = ""
-  type        = string
-}
-
-# Max allocated storage
-variable "max-storage" {
-  description = "Disk size"
-  default     = ""
-  type        = string
-}
-
-# Delete protection
-variable "delete-protection" {
-  description = "Protect against deletions"
-  default     = true
-  type        = bool
-}
-
-# Skip final snapshot
-variable "skip-final-snapshot" {
-  description = "Skip final snapshot before delete"
-  default     = true
-  type        = bool
-}
-
-# Certificate
-variable "certificate" {
-  description = "SSL certificate used by instance"
+# Root user
+variable "root-user" {
+  description = "Name of root user"
   default     = ""
   type        = string
 }
@@ -123,16 +109,23 @@ variable "multi-az" {
   type        = bool
 }
 
-# Environment
-variable "environment" {
-  description = "Environment where the resources are being created"
+# Delete protection
+variable "delete-protection" {
+  description = "Protect against deletions"
+  default     = true
+  type        = bool
+}
+
+# Certificate
+variable "certificate" {
+  description = "SSL certificate used by instance"
   default     = ""
   type        = string
 }
 
-# Project
-variable "project" {
-  description = "Project name"
-  default     = ""
-  type        = string
+# Skip final snapshot
+variable "skip-final-snapshot" {
+  description = "Skip final snapshot before delete"
+  default     = true
+  type        = bool
 }
