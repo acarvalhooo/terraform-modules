@@ -12,9 +12,16 @@ variable "environment" {
   type        = string
 }
 
-# Cluster URL OIDC
+# OIDC issuer ARN
+variable "oidc-issuer-arn" {
+  description = "OIDC issuer arn of cluster where the driver will be installed"
+  default     = ""
+  type        = string
+}
+
+# Cluster OIDC URL
 variable "cluster-oidc-url" {
-  description = "URL of cluster OIDC"
+  description = "Cluster OIDC URL of cluster where the driver will be installed"
   default     = ""
   type        = string
 }
@@ -27,7 +34,7 @@ variable "cluster-name" {
 }
 
 # API server endpoint
-variable "endpoint" {
+variable "api-server-endpoint" {
   description = "API server endpoint of cluster"
   default     = ""
   type        = string
@@ -36,13 +43,6 @@ variable "endpoint" {
 # Cluster CA certificate
 variable "cluster-ca-certificate" {
   description = "Cluster CA certificate"
-  default     = ""
-  type        = string
-}
-
-# OIDC issuer ARN
-variable "oidc-issuer-arn" {
-  description = "OIDC issuer arn"
   default     = ""
   type        = string
 }
