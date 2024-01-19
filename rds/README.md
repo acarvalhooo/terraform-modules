@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 module "rds" {
-  source                = "./Terraform-Modules/rds"
+  source                = "./rds"
   vpc-id                = "vpc-0000000000000"
   database-subnet-01-id = "subnet-0000000000000"
   database-subnet-02-id = "subnet-0000000000001"
