@@ -5,8 +5,8 @@ resource "aws_s3_bucket" "bucket" {
 
   tags = {
     Name        = var.bucket-name
-    Environment = var.environment
     Project     = var.project
+    Environment = var.environment
   }
 }
 
@@ -67,8 +67,8 @@ resource "aws_cloudfront_distribution" "distribution" {
 
   tags = {
     Name        = local.comment
-    Environment = var.environment
     Project     = var.project
+    Environment = var.environment
   }
 }
 

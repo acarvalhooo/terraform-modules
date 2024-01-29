@@ -16,11 +16,11 @@ provider "aws" {
 module "static-site-with-cloudfront" {
   source          = "./static-site-with-cloudfront"
   bucket-name     = "my-favorite-bucket"
+  project         = "sap"
+  environment     = "prod"
   versioning      = "Enabled"
   custom-domain   = ["example.com", "second.example.com"]
-  certificate-arn = "arn:aws:acm:us-east-1:012345678901:certificate/a0a0a0a0-a0a0-a0a0-a0a0-a0a0a0a0a0a0"
   root-object     = "index.html"
-  environment     = "prod"
-  project         = "sap"
+  certificate-arn = "arn:aws:acm:us-east-1:012345678901:certificate/a0a0a0a0-a0a0-a0a0-a0a0-a0a0a0a0a0a0"
 }
 ```

@@ -6,8 +6,8 @@ resource "aws_vpc" "vpc" {
 
   tags = {
     Name        = "vpc-${var.project}-${var.environment}"
-    Environment = var.environment
     Project     = var.project
+    Environment = var.environment
   }
 }
 
@@ -28,8 +28,8 @@ resource "aws_subnet" "subnets" {
 
   tags = {
     Name        = "${each.key}-${var.project}-${var.environment}-${each.value.availability_zone}"
-    Environment = var.environment
     Project     = var.project
+    Environment = var.environment
   }
 }
 
@@ -39,8 +39,8 @@ resource "aws_internet_gateway" "igw" {
 
   tags = {
     Name        = "igw-${var.project}-${var.environment}"
-    Environment = var.environment
     Project     = var.project
+    Environment = var.environment
   }
 }
 
@@ -55,8 +55,8 @@ resource "aws_eip" "eip" {
 
   tags = {
     Name        = "${each.key}-${var.project}-${var.environment}-${local.elastic_ips_association[each.key]}"
-    Environment = var.environment
     Project     = var.project
+    Environment = var.environment
   }
 }
 
@@ -72,8 +72,8 @@ resource "aws_nat_gateway" "ngw" {
 
   tags = {
     Name        = "${each.key}-${var.project}-${var.environment}-${local.nat_gateway_availability_zones[each.key]}"
-    Environment = var.environment
     Project     = var.project
+    Environment = var.environment
   }
 }
 
@@ -88,8 +88,8 @@ resource "aws_route_table" "public-route-table" {
 
   tags = {
     Name        = "public-route-table-${var.project}-${var.environment}"
-    Environment = var.environment
     Project     = var.project
+    Environment = var.environment
   }
 }
 
@@ -114,8 +114,8 @@ resource "aws_route_table" "private-route-table-az-1" {
 
   tags = {
     Name        = "private-route-table-${var.project}-${var.environment}-${var.az-1}"
-    Environment = var.environment
     Project     = var.project
+    Environment = var.environment
   }
 }
 
@@ -140,8 +140,8 @@ resource "aws_route_table" "private-route-table-az-2" {
 
   tags = {
     Name        = "private-route-table-${var.project}-${var.environment}-${var.az-2}"
-    Environment = var.environment
     Project     = var.project
+    Environment = var.environment
   }
 }
 

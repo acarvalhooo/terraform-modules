@@ -16,10 +16,10 @@ provider "aws" {
 module "static-site" {
   source         = "./static-site"
   bucket-name    = "my-favorite-bucket"
+  project        = "sap"
+  environment    = "prod"
   versioning     = "Enabled"
   index-object   = "index.html"
   error-object   = "error.html"
-  environment    = "prod"
-  project        = "sap"
 }
 ```

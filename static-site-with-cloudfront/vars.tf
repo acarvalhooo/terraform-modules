@@ -5,6 +5,20 @@ variable "bucket-name" {
   type        = string
 }
 
+# Project
+variable "project" {
+  description = "Project name"
+  default     = ""
+  type        = string
+}
+
+# Environment
+variable "environment" {
+  description = "Environment where the resources are being created"
+  default     = ""
+  type        = string
+}
+
 # Versioning
 variable "versioning" {
   description = "Enable versioning in bucket"
@@ -19,13 +33,6 @@ variable "custom-domain" {
   type        = list(string)
 }
 
-# Certificate ARN
-variable "certificate-arn" {
-  description = "Certificate ARN that must be used by CloudFront to use a custom domain"
-  default     = ""
-  type        = string
-}
-
 # Root object
 variable "root-object" {
   description = "Name of main object"
@@ -33,16 +40,9 @@ variable "root-object" {
   type        = string
 }
 
-# Environment
-variable "environment" {
-  description = "Environment where the resources are being created"
-  default     = ""
-  type        = string
-}
-
-# Project
-variable "project" {
-  description = "Project name"
+# Certificate ARN
+variable "certificate-arn" {
+  description = "Certificate ARN that must be used by CloudFront to use a custom domain"
   default     = ""
   type        = string
 }

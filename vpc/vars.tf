@@ -5,6 +5,27 @@ variable "vpc-cidr" {
   type        = string
 }
 
+# DNS support to VPC
+variable "dns-support" {
+  description = "Resolution of DNS in VPC"
+  default     = true
+  type        = bool
+}
+
+# Project
+variable "project" {
+  description = "Project name"
+  default     = ""
+  type        = string
+}
+
+# Environment
+variable "environment" {
+  description = "Environment where the resources are being created"
+  default     = ""
+  type        = string
+}
+
 # Subnets CIDRs
 variable "public-subnet-01-cidr" {
   description = "CIDR used in first public subnet"
@@ -42,13 +63,6 @@ variable "database-subnet-02-cidr" {
   type        = string
 }
 
-# Internet CIDR block
-variable "internet-cidr" {
-  description = "Internet CIDR as target for route tables"
-  default     = "0.0.0.0/0"
-  type        = string
-}
-
 # Availability zones
 variable "az-1" {
   description = "First availability zone"
@@ -62,13 +76,6 @@ variable "az-2" {
   type        = string
 }
 
-# DNS support to VPC
-variable "dns-support" {
-  description = "Resolution of DNS in VPC"
-  default     = true
-  type        = bool
-}
-
 # Public IP on launch
 variable "map-public-ip" {
   description = "Map public IP to resources in public subnets"
@@ -76,16 +83,9 @@ variable "map-public-ip" {
   type        = bool
 }
 
-# Environment
-variable "environment" {
-  description = "Environment where the resources are being created"
-  default     = ""
-  type        = string
-}
-
-# Project
-variable "project" {
-  description = "Project name"
-  default     = ""
+# Internet CIDR block
+variable "internet-cidr" {
+  description = "Internet CIDR as target for route tables"
+  default     = "0.0.0.0/0"
   type        = string
 }
