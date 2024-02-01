@@ -25,7 +25,7 @@ module "eks" {
   max-size                 = "2"
   ami-type                 = "AL2_x86_64"
   disk-size                = "50"
-  instances-types          = ["t3.medium", "t2.medium"]
+  instance-types           = ["t3.medium", "t2.medium"]
   coredns-version          = "v1.10.1-eksbuild.6"
   kube-proxy-version       = "v1.28.4-eksbuild.4"
   vpc-cni-version          = "v1.16.0-eksbuild.1"
