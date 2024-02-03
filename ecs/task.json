@@ -1,0 +1,35 @@
+[
+  {
+    "name": "rancher",
+    "image": "rancher/rancher:latest",
+    "cpu": 0,
+    "portMappings": [
+      {
+        "name": "rancher-80-tcp",
+        "containerPort": 80,
+        "hostPort": 80,
+        "protocol": "tcp"
+      },
+      {
+        "name": "rancher-443-tcp",
+        "containerPort": 443,
+        "hostPort": 443,
+        "protocol": "tcp"
+      }
+    ],
+    "essential": true,
+    "environment": [],
+    "mountPoints": [],
+    "volumesFrom": [],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-create-group": "true",
+        "awslogs-group": "/ecs/rancher-task",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "ecs"
+      },
+      "secretOptions": []
+    }
+  }
+]
