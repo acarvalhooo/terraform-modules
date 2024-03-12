@@ -13,7 +13,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "cache" {
+module "gitlab-runner-cache" {
   source            = "./gitlab-runner-cache"
   bucket-name       = "my-bucket"
   project           = "runner"
