@@ -16,7 +16,7 @@ provider "aws" {
 module "alb-controller" {
   source                 = "./alb-controller"
   cluster-oidc-url       = "https://oidc.eks.region-code.amazonaws.com/id/thumbprint-code"
-  project                = "sap
+  project                = "sap"
   environment            = "prod"
   cluster-name           = "eks-cluster-sap-prod"
   api-server-endpoint    = "Get this value from eks console identified by 'API server endpoint'"
