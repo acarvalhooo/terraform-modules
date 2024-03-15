@@ -1,5 +1,5 @@
 # OIDC issuer ARN
-output "oidc-issuer-arn" {
+output "oidc-provider-arn" {
   value = aws_iam_openid_connect_provider.oidc-provider.arn
 }
 
