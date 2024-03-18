@@ -1,5 +1,5 @@
-# Retrieving caller identity
-data "aws_caller_identity" "account-id" {}
+# Retrieving region
+data "aws_region" "current" {}
 
 # Configuring token to be used to apply the helm chart
 data "aws_eks_cluster_auth" "cluster-auth" {
@@ -85,7 +85,12 @@ resource "helm_release" "cluster-autoscaler" {
 
   set {
     name  = "awsRegion"
-    value = var.region
+    value = data.aws_region.current.name
+  }
+
+  set {
+    name  = "autoDiscovery.enabled"
+    value = true
   }
 
   set {
@@ -93,14 +98,14 @@ resource "helm_release" "cluster-autoscaler" {
     value = var.cluster-name
   }
 
-  set {
-    name  = "autoDiscovery.tags"
-    value = "k8s.io/cluster-autoscaler/enabled"
-  }
+  # set {
+  #   name  = "autoDiscovery.tags"
+  #   value = "k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.autoDiscovery.clusterName }}"
+  # }
 
   set {
-    name  = "autoDiscovery.tags"
-    value = "k8s.io/cluster-autoscaler/{{ .Values.autoDiscovery.clusterName }}"
+    name  = "cloudProvider"
+    value = "aws"
   }
 
   set {
@@ -112,4 +117,6 @@ resource "helm_release" "cluster-autoscaler" {
     name  = "rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = aws_iam_role.role.arn
   }
+
+  depends_on = [aws_iam_role.role]
 }

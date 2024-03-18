@@ -24,6 +24,5 @@ module "eks-autoscaler" {
   cluster-oidc-url       = module.eks.cluster-oidc-url
   chart-version          = "9.35.0"
   application-version    = "v1.29.0"
-  region                 = "us-east-1"
 }
 ```

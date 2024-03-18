@@ -60,10 +60,3 @@ variable "application-version" {
   default     = ""
   type        = string
 }
-
-# Region
-variable "region" {
-  description = "AWS Region of cluster where the chart will be applied"
-  default     = ""
-  type        = string
-}
