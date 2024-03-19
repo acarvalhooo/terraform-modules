@@ -98,11 +98,6 @@ resource "helm_release" "cluster-autoscaler" {
     value = var.cluster-name
   }
 
-  # set {
-  #   name  = "autoDiscovery.tags"
-  #   value = "k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.autoDiscovery.clusterName }}"
-  # }
-
   set {
     name  = "cloudProvider"
     value = "aws"
