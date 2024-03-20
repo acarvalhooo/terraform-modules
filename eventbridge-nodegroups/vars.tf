@@ -42,7 +42,7 @@ variable "cron-scaleup" {
 
 # Cron scale down
 variable "cron-scaledown" {
-  description = "Cron expression of scale up"
+  description = "Cron expression of scale down"
   default     = ""
   type        = string
 }
