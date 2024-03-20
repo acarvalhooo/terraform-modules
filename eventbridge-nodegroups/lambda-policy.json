@@ -1,0 +1,23 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "eks:ListNodegroups",
+                "eks:UpdateNodegroupConfig",
+                "eks:DescribeNodegroup",
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:eks:${region}:${account}:cluster/${cluster-name}",
+                "arn:aws:eks:${region}:${account}:nodegroup/${cluster-name}/*/*",
+                "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda-scaleup-name}:*",
+                "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda-scaledown-name}:*"
+            ]
+        }
+    ]
+}
