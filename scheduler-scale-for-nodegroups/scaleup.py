@@ -8,8 +8,8 @@ def lambda_handler(event, context):
     region_name = os.environ.get("region_name")
     cluster_name = os.environ.get("cluster_name")
     nodegroup_names = ["node-group-name"]
-    new_minSize = 2
-    new_desiredSize = 2
+    new_minSize = 3
+    new_desiredSize = 3
     new_maxSize = 5
 
     for nodegroup_name in nodegroup_names:

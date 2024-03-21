@@ -13,15 +13,15 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "eventbridge-nodegroups" {
-  source         = "./eventbridge-nodegroups"
+module "scheduler-scale-for-nodegroups" {
+  source         = "./scheduler-scale-for-nodegroups"
   cluster-name   = module.eks.cluster-name
   project        = "sap"
   environment    = "prod"
   lambda-runtime = "python3.8"
   lambda-timeout = 15
-  cron-scaleup   = "cron(0 8 * * ? *)"
-  cron-scaledown = "cron(0 20 * * ? *)"
+  cron-scaleup   = "cron(0 8 ? * MON-FRI *)"
+  cron-scaledown = "cron(0 20 ? * MON-FRI *)"
   timezone       = "Brazil/East"
 }
 ```
