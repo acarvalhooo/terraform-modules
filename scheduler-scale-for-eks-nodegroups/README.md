@@ -13,8 +13,8 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "scheduler-scale-for-nodegroups" {
-  source         = "./scheduler-scale-for-nodegroups"
+module "scheduler-scale-for-eks-nodegroups" {
+  source         = "./scheduler-scale-for-eks-nodegroups"
   cluster-name   = module.eks.cluster-name
   project        = "sap"
   environment    = "prod"
