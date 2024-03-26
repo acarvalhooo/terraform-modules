@@ -42,20 +42,14 @@ resource "aws_iam_policy_attachment" "attachments" {
   policy_arn = each.value.policy_arn
 }
 
-# Creating namespace
-resource "kubernetes_namespace" "namespace" {
-  metadata {
-    name = "amazon-cloudwatch"
-  }
-}
-
 # Configuring release that will be applied
 resource "helm_release" "aws-cloudwatch-metrics" {
-  name       = "aws-cloudwatch-metrics"
-  repository = "https://aws.github.io/eks-charts"
-  chart      = "aws-cloudwatch-metrics"
-  namespace  = "amazon-cloudwatch"
-  version    = var.chart-version
+  name             = "aws-cloudwatch-metrics"
+  repository       = "https://aws.github.io/eks-charts"
+  chart            = "aws-cloudwatch-metrics"
+  namespace        = "amazon-cloudwatch"
+  version          = var.chart-version
+  create_namespace = true
 
   set {
     name  = "image.tag"
