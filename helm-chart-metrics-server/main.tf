@@ -4,7 +4,7 @@ data "aws_eks_cluster_auth" "cluster-auth" {
 }
 
 # Configuring release that will be applied
-resource "helm_release" "aws-cloudwatch-metrics" {
+resource "helm_release" "metrics-server" {
   name             = "metrics-server"
   repository       = "https://kubernetes-sigs.github.io/metrics-server/"
   chart            = "metrics-server"
