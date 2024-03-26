@@ -1,6 +1,3 @@
-# Retrieving region
-data "aws_region" "current" {}
-
 # Configuring token to be used to apply the helm chart
 data "aws_eks_cluster_auth" "cluster-auth" {
   name = var.cluster-name
