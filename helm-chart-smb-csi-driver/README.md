@@ -13,8 +13,8 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "smb-csi-driver" {
-  source                 = "./smb-csi-driver"
+module "helm-chart-smb-csi-driver" {
+  source                 = "./helm-chart-smb-csi-driver"
   cluster-name           = "eks-cluster-sap-prod"
   endpoint               = "https://A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0.A0A.us-east-1.eks.amazonaws.com"
   cluster-ca-certificate = "Get this value from eks console identified by 'Certificate authority'"
