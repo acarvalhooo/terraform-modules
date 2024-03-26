@@ -65,4 +65,6 @@ resource "helm_release" "aws-cloudwatch-metrics" {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = aws_iam_role.role.arn
   }
+
+  depends_on = [aws_iam_role.role]
 }
