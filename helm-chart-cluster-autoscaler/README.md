@@ -22,7 +22,7 @@ module "helm-chart-cluster-autoscaler" {
   environment            = "prod"
   oidc-provider-arn      = module.eks.oidc-provider-arn
   cluster-oidc-url       = module.eks.cluster-oidc-url
-  chart-version          = "9.35.0"
+  chart-version          = "9.36.0"
   application-version    = "v1.29.0"
 }
 ```
