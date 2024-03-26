@@ -1,18 +1,9 @@
 # Retrieving region
-data "aws_region" "current" {}
+data "aws_region" "region" {}
 
 # Configuring token to be used to apply the helm chart
 data "aws_eks_cluster_auth" "cluster-auth" {
   name = var.cluster-name
-}
-
-# Configuring helm provider
-provider "helm" {
-  kubernetes {
-    host                   = var.api-server-endpoint
-    cluster_ca_certificate = base64decode(var.cluster-ca-certificate)
-    token                  = data.aws_eks_cluster_auth.cluster-auth.token
-  }
 }
 
 # Creating policy to be used by role
@@ -62,11 +53,11 @@ resource "aws_iam_role" "role" {
 
 resource "aws_iam_policy_attachment" "attachments" {
   for_each = {
-    "attachment-01" = { name = aws_iam_policy.policy.name, policy_arn = aws_iam_policy.policy.arn }
+    "attachment-01" = { policy_arn = aws_iam_policy.policy.arn }
   }
 
   roles      = [aws_iam_role.role.name]
-  name       = each.value.name
+  name       = each.key
   policy_arn = each.value.policy_arn
 }
 
@@ -85,7 +76,7 @@ resource "helm_release" "cluster-autoscaler" {
 
   set {
     name  = "awsRegion"
-    value = data.aws_region.current.name
+    value = data.aws_region.region.name
   }
 
   set {

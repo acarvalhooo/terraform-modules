@@ -13,8 +13,8 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "eks-autoscaler" {
-  source                 = "./eks-autoscaler"
+module "helm-chart-cluster-autoscaler" {
+  source                 = "./helm-chart-cluster-autoscaler"
   cluster-name           = module.eks.cluster-name
   api-server-endpoint    = module.eks.api-server-endpoint
   cluster-ca-certificate = module.eks.cluster-ca-certificate
