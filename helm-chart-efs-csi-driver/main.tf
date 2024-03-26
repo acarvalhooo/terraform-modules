@@ -60,12 +60,12 @@ resource "helm_release" "efs-csi-driver" {
   }
 
   set {
-    name  = "serviceAccount.name"
+    name  = "controller.serviceAccount.name"
     value = "aws-efs-csi-driver"
   }
 
   set {
-    name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+    name  = "controller.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = aws_iam_role.role.arn
   }
 
