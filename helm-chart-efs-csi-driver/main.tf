@@ -17,7 +17,7 @@ resource "aws_iam_role" "role" {
       },
       Condition = {
         StringLike = {
-          "${var.cluster-oidc-url}:sub" = "system:serviceaccount:kube-system:aws-efs-csi-driver",
+          "${var.cluster-oidc-url}:sub" = "system:serviceaccount:${var.namespace}:aws-efs-csi-driver",
           "${var.cluster-oidc-url}:aud" = "sts.amazonaws.com"
         }
       }
@@ -43,11 +43,12 @@ resource "aws_iam_policy_attachment" "attachments" {
 
 # Configuring release that will be applied
 resource "helm_release" "efs-csi-driver" {
-  name       = "aws-efs-csi-driver"
-  repository = "https://kubernetes-sigs.github.io/aws-efs-csi-driver/"
-  chart      = "aws-efs-csi-driver"
-  namespace  = "kube-system"
-  version    = var.chart-version
+  name             = "aws-efs-csi-driver"
+  repository       = "https://kubernetes-sigs.github.io/aws-efs-csi-driver/"
+  chart            = "aws-efs-csi-driver"
+  namespace        = var.namespace
+  version          = var.chart-version
+  create_namespace = true
 
   set {
     name  = "clusterName"

@@ -33,6 +33,13 @@ variable "cluster-oidc-url" {
   type        = string
 }
 
+# Namespace
+variable "namespace" {
+  description = "Namespace where the chart will be applied"
+  default     = ""
+  type        = string
+}
+
 # Project
 variable "project" {
   description = "Project name. Thats used for tags and nomenclature"

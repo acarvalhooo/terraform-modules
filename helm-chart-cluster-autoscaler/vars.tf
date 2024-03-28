@@ -19,20 +19,6 @@ variable "cluster-ca-certificate" {
   type        = string
 }
 
-# Project
-variable "project" {
-  description = "Project name. Thats used for tags and nomenclature"
-  default     = ""
-  type        = string
-}
-
-# Environment
-variable "environment" {
-  description = "Environment. Thats used for tags and nomenclature"
-  default     = ""
-  type        = string
-}
-
 # OIDC provider ARN
 variable "oidc-provider-arn" {
   description = "OIDC provider ARN of cluster where the chart will be applied"
@@ -43,6 +29,27 @@ variable "oidc-provider-arn" {
 # Cluster OIDC URL
 variable "cluster-oidc-url" {
   description = "Cluster OIDC URL of cluster where the chart will be applied"
+  default     = ""
+  type        = string
+}
+
+# Namespace
+variable "namespace" {
+  description = "Namespace where the chart will be applied"
+  default     = ""
+  type        = string
+}
+
+# Project
+variable "project" {
+  description = "Project name. Thats used for tags and nomenclature"
+  default     = ""
+  type        = string
+}
+
+# Environment
+variable "environment" {
+  description = "Environment. Thats used for tags and nomenclature"
   default     = ""
   type        = string
 }

@@ -19,6 +19,13 @@ variable "cluster-ca-certificate" {
   type        = string
 }
 
+# Namespace
+variable "namespace" {
+  description = "Namespace where the chart will be applied"
+  default     = ""
+  type        = string
+}
+
 # Chart version
 variable "chart-version" {
   description = "Chart version"

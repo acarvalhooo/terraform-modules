@@ -36,7 +36,7 @@ resource "aws_iam_role" "role" {
         "Action" : "sts:AssumeRoleWithWebIdentity",
         "Condition" : {
           "StringLike" : {
-            "${replace(var.cluster-oidc-url, "https://", "")}:sub" : "system:serviceaccount:kube-system:cluster-autoscaler",
+            "${replace(var.cluster-oidc-url, "https://", "")}:sub" : "system:serviceaccount:${var.namespace}:cluster-autoscaler",
             "${replace(var.cluster-oidc-url, "https://", "")}:aud" : "sts.amazonaws.com"
           }
         }
@@ -63,11 +63,12 @@ resource "aws_iam_policy_attachment" "attachments" {
 
 # Configuring release that will be applied
 resource "helm_release" "cluster-autoscaler" {
-  name       = "cluster-autoscaler"
-  repository = "https://kubernetes.github.io/autoscaler"
-  chart      = "cluster-autoscaler"
-  namespace  = "kube-system"
-  version    = var.chart-version
+  name             = "cluster-autoscaler"
+  repository       = "https://kubernetes.github.io/autoscaler"
+  chart            = "cluster-autoscaler"
+  namespace        = var.namespace
+  version          = var.chart-version
+  create_namespace = true
 
   set {
     name  = "image.tag"

@@ -17,7 +17,7 @@ resource "aws_iam_role" "role" {
         "Action" : "sts:AssumeRoleWithWebIdentity",
         "Condition" : {
           "StringLike" : {
-            "${replace(var.cluster-oidc-url, "https://", "")}:sub" : "system:serviceaccount:amazon-cloudwatch:aws-cloudwatch-metrics",
+            "${replace(var.cluster-oidc-url, "https://", "")}:sub" : "system:serviceaccount:${var.namespace}:aws-cloudwatch-metrics",
             "${replace(var.cluster-oidc-url, "https://", "")}:aud" : "sts.amazonaws.com"
           }
         }
@@ -47,7 +47,7 @@ resource "helm_release" "aws-cloudwatch-metrics" {
   name             = "aws-cloudwatch-metrics"
   repository       = "https://aws.github.io/eks-charts"
   chart            = "aws-cloudwatch-metrics"
-  namespace        = "amazon-cloudwatch"
+  namespace        = var.namespace
   version          = var.chart-version
   create_namespace = true
 

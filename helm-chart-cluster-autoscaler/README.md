@@ -18,10 +18,11 @@ module "helm-chart-cluster-autoscaler" {
   cluster-name           = module.eks.cluster-name
   api-server-endpoint    = module.eks.api-server-endpoint
   cluster-ca-certificate = module.eks.cluster-ca-certificate
-  project                = "sap"
-  environment            = "prod"
   oidc-provider-arn      = module.eks.oidc-provider-arn
   cluster-oidc-url       = module.eks.cluster-oidc-url
+  namespace              = "kube-system"
+  project                = "sap"
+  environment            = "prod"
   chart-version          = "9.36.0"
   application-version    = "v1.29.0"
 }
