@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 module "helm-chart-ingress-nginx" {
-  source                  = "./terraform-modules/helm-chart-ingress-nginx"
+  source                  = "./helm-chart-ingress-nginx"
   cluster-name            = module.eks.cluster-name
   api-server-endpoint     = module.eks.api-server-endpoint
   cluster-ca-certificate  = module.eks.cluster-ca-certificate
